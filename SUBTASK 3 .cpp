@@ -3,6 +3,8 @@
 
 // Define a constant for the maximum number of orders.
 const int MAX_ORDERS = 50;
+// Define a constant for the price per Magwinya.
+const float PRICE_PER_MAGWINYA = 5.50; // New: Fixed price per Magwinya (R5.50)
 
 using namespace std;
 
@@ -16,6 +18,7 @@ int main() {
     int orderCount = 0; // Tracks the number of valid orders.
 
     // 2. Initialize the first 10 elements with sample data.
+    // Note: Total costs are kept as provided for consistency with the original data.
     orderIDs[0] = "101"; customerNames[0] = "Thabo"; numMagwinyas[0] = 3; totalCosts[0] = 15.75;
     orderIDs[1] = "102"; customerNames[1] = "Lerato"; numMagwinyas[1] = 5; totalCosts[1] = 30.50;
     orderIDs[2] = "103"; customerNames[2] = "Nomvula"; numMagwinyas[2] = 2; totalCosts[2] = 10.00;
@@ -54,7 +57,6 @@ int main() {
             } else {
                 string newCustomerName;
                 int newNumMagwinyas;
-                float newTotalCost;
 
                 cout << "Enter customer name: ";
                 cin.ignore(); // Clears the input buffer.
@@ -63,8 +65,9 @@ int main() {
                 cout << "Enter number of Magwinyas ordered: ";
                 cin >> newNumMagwinyas;
 
-                cout << "Enter total cost of order: ";
-                cin >> newTotalCost;
+                // New: Calculate total cost based on number of Magwinyas.
+                float newTotalCost = newNumMagwinyas * PRICE_PER_MAGWINYA;
+                cout << "Calculated total cost: R" << newTotalCost << endl;
 
                 // Generate a new Order ID by incrementing the last valid ID.
                 int lastOrderID = stoi(orderIDs[orderCount - 1]);
